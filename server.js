@@ -5,11 +5,8 @@ const port = 3000;
 
 let Db;
 if (process.env.NODE_ENV==='development') {
-    Db = "mongodb://host.docker.internal:27017/user-db";
-    Db += "?retryWrites=true&w=majority"
-} else {
-    Db = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
-}
+    Db = process.env.DATABASE_DEV
+} else Db = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
 
 mongoose.connect(Db,{
     useNewUrlParser: true,
